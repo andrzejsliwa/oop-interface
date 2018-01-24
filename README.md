@@ -24,7 +24,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install interface
+    $ gem install oop-interface
 
 ## Usage
 
@@ -116,7 +116,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/andrzejsliwa/interface.
+Bug reports and pull requests are welcome on GitHub at https://github.com/andrzejsliwa/oop-interface.
 
 ## License
 
