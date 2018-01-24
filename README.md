@@ -77,6 +77,31 @@ Example usage:
       > OrderImpl.new.is_a? Order
       => true
       
+      # In DDD
+      
+      class OrderImpl < ApplicationRecord
+        include Interface
+        implements Order
+        
+        has_many :order_lines, ...
+        
+        def submit
+          :submitted
+        end
+      end
+      
+      class OrderRepository
+        def load(aggregate_id)
+          OrderImpl.find(aggregate_id).as(Order)
+        end
+      end
+      
+      > saver = OrderRepository.new.load(aggregate_id)
+      => #<Saver:70247745038560>
+      
+      > saver.order_lines 
+      NoMethodError: undefined method `order_lines' for #<Saver:70247745038560>
+      
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
