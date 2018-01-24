@@ -1,5 +1,10 @@
 # oop-interface - OOP interfaces for Ruby [![Build Status](https://travis-ci.org/andrzejsliwa/oop-interface.svg?branch=master)](https://travis-ci.org/andrzejsliwa/oop-interface)
 
+The main idea behind of implementation of such gem, was limiting the scope.
+For example when you are implementing Aggregate Root (following Domain Driven Design) 
+in ActiveRecord, you would like to expose only public contract methods to ensure that 
+Aggregate Root boundaries are not crossed by using directly relations or ActiveRecord methods.
+
 This gem takes inspiration from https://github.com/shuber/interface and 
 borrow some implementation details from it, extend it and modify available api.
 
@@ -72,11 +77,6 @@ Example usage:
       > OrderImpl.new.is_a? Order
       => true
       
-The main idea behind of implementation of such gem, was limiting the scope.
-For example when you are implementing Aggregate Root (following Domain Driven Design) 
-in ActiveRecord, you would like to expose only public contract methods to ensure that 
-Aggregate Root boundaries are not crossed by using directly relations or ActiveRecord methods.
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
