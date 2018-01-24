@@ -50,18 +50,25 @@ Example usage:
       
       > OrderImpl.interfaces
        => [Order, Saver] 
+       
       > OrderImpl.unimplemented_methods
        => {Order=>[:add_position]} 
+       
       > saver = OrderImpl.new.as(Saver)
        => #<Saver:70247745038560> 
+       
       > saver.submit
       NoMethodError: undefined method `submit' for #<Saver:70247745038560>
+      
       > saver.save(some: 8)
       "save 8"
+      
       > OrderImpl.new.add_position
       NotImplementedError: OrderImpl needs to implement 'add_position' for interface Order
+      
       > OrderImpl.new.is_a? Saver
       => true 
+      
       > OrderImpl.new.is_a? Order
       => true
       
