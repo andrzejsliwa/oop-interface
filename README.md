@@ -1,4 +1,4 @@
-# OOP Interface for Ruby
+# oop-interface - OOP interfaces for Ruby [![Build Status](https://travis-ci.org/andrzejsliwa/oop-interface.svg?branch=master)](https://travis-ci.org/andrzejsliwa/oop-interface)
 
 This gem takes inspiration from https://github.com/shuber/interface and 
 borrow some implementation details from it, extend it and modify available api.
