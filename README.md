@@ -99,6 +99,9 @@ Example usage:
       > order = OrderRepository.new.load(aggregate_id)
       => #<Order:70247745038560>
       
+      > order.save
+      NoMethodError: undefined method `save' for #<Order:70247745038560>
+      
       > order.order_lines 
       NoMethodError: undefined method `order_lines' for #<Order:70247745038560>
       
