@@ -96,11 +96,14 @@ Example usage:
         end
       end
       
-      > saver = OrderRepository.new.load(aggregate_id)
-      => #<Saver:70247745038560>
+      > order = OrderRepository.new.load(aggregate_id)
+      => #<Order:70247745038560>
       
-      > saver.order_lines 
-      NoMethodError: undefined method `order_lines' for #<Saver:70247745038560>
+      > order.order_lines 
+      NoMethodError: undefined method `order_lines' for #<Order:70247745038560>
+      
+      > order.submit
+      => :submittted
       
 ## Development
 
