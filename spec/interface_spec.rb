@@ -40,6 +40,12 @@ RSpec.describe Interface do
       expect(saver).to be_a(Saver)
       expect(saver.save(some: 7)).to eq "save 7"
     end
+
+    it "returns same class object per interface" do
+      order1 = OrderImpl.new.as(Saver)
+      order2 = OrderImpl.new.as(Saver)
+      expect(order1.class).to eq(order2.class)
+    end
   end
 
   describe ".interfaces" do

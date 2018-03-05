@@ -53,34 +53,49 @@ module Interface
     end
   end
 
+  def cached_interface_class(interface)
+    interface.instance_variable_get("@__cached_class__") || begin
+      klass = yield
+      interface.instance_variable_set("@__cached_class__", klass)
+      klass
+    end
+  end
+
+
   def as(interface)
     raise UnknownInterface.new(interface) unless self.class.interfaces.include?(interface)
-    Class.new do
-      def initialize(target)
-        @target = target
-      end
-
-      interface.instance_methods.select do |method|
-        interface.instance_method(method.to_sym).owner == interface
-      end.each do |method|
-        define_method(method) do |*args, &block|
-          @target.public_send(method, *args, &block)
+    cached_interface_class(interface) do
+      Class.new do
+        def initialize(target)
+          @target = target
         end
-      end
 
-      [:is_a?, :kind_of?, :instance_of?].each do |type_method|
-        define_method(type_method) do |target, &block|
-          return true if target == interface
-          super
+        interface.instance_methods.select do |method|
+          interface.instance_method(method.to_sym).owner == interface
+        end.each do |method|
+          define_method(method) do |*args, &block|
+            @target.public_send(method, *args, &block)
+          end
         end
-      end
 
-      define_method(:inspect) do
-        "#<#{interface.name}:#{self.object_id}>"
-      end
+        [:is_a?, :kind_of?, :instance_of?].each do |type_method|
+          define_method(type_method) do |target, &block|
+            return true if target == interface
+            super
+          end
+        end
 
-      def to_s
-        inspect
+        define_singleton_method :name do
+          interface.name
+        end
+
+        define_singleton_method :inspect do
+          name
+        end
+
+        define_method(:inspect) do
+          "#<#{interface.name}:#{self.object_id}>"
+        end
       end
     end.new(self)
   end
