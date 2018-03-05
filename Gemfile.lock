@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oop-interface (0.1.1)
+    oop-interface (0.2.0)
 
 GEM
   remote: https://rubygems.org/
